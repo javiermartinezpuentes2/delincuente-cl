@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Importadora Pacífico Ltda. · delincuente.cl</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rojo: #C8001A;
+    --negro: #0F0F0F;
+    --blanco: #F7F6F2;
+    --gris-claro: #EFEFEB;
+    --gris-medio: #D8D7D3;
+    --gris-texto: #767672;
+    --negro-texto: #1A1A18;
+    --verde: #1A7A3C;
+    --amarillo: #A86800;
+    --borde: rgba(0,0,0,0.09);
+    --borde-fuerte: rgba(0,0,0,0.16);
+  }
+
+  body {
+    background: var(--blanco);
+    color: var(--negro-texto);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    background: var(--blanco);
+    border-bottom: 1px solid var(--borde);
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--negro);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  .nav-logo span { color: var(--rojo); }
+
+  .nav-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 440px;
+    margin: 0 32px;
+  }
+
+  .nav-search input {
+    flex: 1;
+    background: var(--gris-claro);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--negro-texto);
+    outline: none;
+  }
+
+  .nav-search input:focus { border-color: var(--negro); }
+
+  .nav-search button {
+    background: var(--negro);
+    color: var(--blanco);
+    border: none;
+    border-radius: 3px;
+    padding: 6px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .nav-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  /* ─── WRAPPER ─── */
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 100px;
+  }
+
+  /* ─── BLOQUE 1: IDENTIDAD ─── */
+  .identity {
+    margin-bottom: 40px;
+  }
+
+  .identity-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .identity-meta-sep { opacity: 0.3; }
+
+  .identity-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 7vw, 64px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--negro);
+    margin-bottom: 14px;
+  }
+
+  .identity-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--gris-claro);
+    color: var(--gris-texto);
+    padding: 4px 10px;
+    border-radius: 2px;
+    border: 1px solid var(--borde);
+  }
+
+  /* ─── BLOQUE 2: VEREDICTO ─── */
+  .verdict {
+    border: 1.5px solid var(--borde-fuerte);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .verdict-top {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .verdict-score {
+    padding: 28px 32px;
+    border-right: 1px solid var(--borde);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 160px;
+  }
+
+  .verdict-score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 6px;
+  }
+
+  .verdict-score-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--rojo);
+  }
+
+  .verdict-score-den {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--gris-medio);
+    margin-top: 2px;
+  }
+
+  .verdict-badge-area {
+    flex: 1;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .verdict-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 2px;
+    width: fit-content;
+  }
+
+  .verdict-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .badge-alto  { background: rgba(200,0,26,0.07);  color: var(--rojo);    border: 1px solid rgba(200,0,26,0.2); }
+  .badge-alto::before  { background: var(--rojo); }
+  .badge-medio { background: rgba(168,104,0,0.07); color: var(--amarillo); border: 1px solid rgba(168,104,0,0.2); }
+  .badge-medio::before { background: var(--amarillo); }
+  .badge-bajo  { background: rgba(26,122,60,0.07); color: var(--verde);   border: 1px solid rgba(26,122,60,0.2); }
+  .badge-bajo::before  { background: var(--verde); }
+
+  .verdict-resumen {
+    font-size: 14px;
+    color: var(--gris-texto);
+    line-height: 1.6;
+    max-width: 340px;
+  }
+
+  .verdict-resumen strong { color: var(--negro-texto); font-weight: 500; }
+
+  /* BARRA SCORE */
+  .verdict-bar-wrap {
+    padding: 16px 32px;
+    background: var(--gris-claro);
+  }
+
+  .verdict-bar-track {
+    height: 6px;
+    background: var(--gris-medio);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .verdict-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--rojo);
+    border-radius: 3px;
+    transition: width 0.9s cubic-bezier(.4,0,.2,1);
+  }
+
+  .verdict-bar-legend {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  .verdict-bar-legend span {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--gris-medio);
+  }
+
+  /* ─── ALERTA UAF ─── */
+  .alerta {
+    background: rgba(200,0,26,0.04);
+    border: 1px solid rgba(200,0,26,0.18);
+    border-radius: 3px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .alerta-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--rojo);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .alerta-body { font-size: 13px; color: var(--negro-texto); line-height: 1.55; }
+  .alerta-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rojo);
+    font-weight: 500;
+    margin-bottom: 3px;
+    display: block;
+  }
+
+  /* ─── SECCIÓN LABEL ─── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* ─── DATOS GRATIS ─── */
+  .data-table {
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .data-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--borde);
+    gap: 16px;
+  }
+
+  .data-row:last-child { border-bottom: none; }
+
+  .data-row-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .data-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--gris-claro);
+    color: var(--gris-texto);
+    padding: 3px 7px;
+    border-radius: 2px;
+    border: 1px solid var(--borde);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .data-label {
+    font-size: 14px;
+    color: var(--negro-texto);
+  }
+
+  .data-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .v-ok   { color: var(--verde); }
+  .v-bad  { color: var(--rojo); }
+  .v-warn { color: var(--amarillo); }
+  .v-muted { color: var(--gris-texto); }
+
+  /* ─── PAYWALL ─── */
+  .paywall {
+    border: 1.5px solid var(--negro);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .paywall-preview {
+    filter: blur(5px);
+    opacity: 0.35;
+    pointer-events: none;
+    user-select: none;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .paywall-preview .data-row { padding: 14px 20px; }
+
+  .paywall-cta {
+    padding: 32px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    background: var(--blanco);
+  }
+
+  .paywall-cta-left {}
+
+  .paywall-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.02em;
+    color: var(--negro);
+    margin-bottom: 6px;
+  }
+
+  .paywall-cta-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .paywall-cta-items li {
+    font-size: 13px;
+    color: var(--gris-texto);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .paywall-cta-items li::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gris-medio);
+    flex-shrink: 0;
+  }
+
+  .paywall-cta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .paywall-price-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+  }
+
+  .paywall-price-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    color: var(--negro);
+  }
+
+  .paywall-price-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gris-medio);
+    letter-spacing: 0.06em;
+    margin-top: -4px;
+  }
+
+  .btn-primary {
+    display: block;
+    background: var(--negro);
+    color: var(--blanco);
+    border: none;
+    border-radius: 2px;
+    padding: 12px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover { background: #2a2a2a; }
+
+  .paywall-divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .paywall-divider::before,
+  .paywall-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borde-fuerte);
+  }
+
+  .paywall-divider span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gris-texto);
+    letter-spacing: 0.06em;
+  }
+
+  .btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: none;
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 2px;
+    padding: 9px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--negro-texto);
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-google:hover { background: var(--gris-claro); }
+
+  .g-icon { width: 15px; height: 15px; flex-shrink: 0; }
+
+  .paywall-legal {
+    font-size: 11px;
+    color: var(--gris-medio);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ─── FUENTES ─── */
+  .fuentes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .fuente-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    background: var(--gris-claro);
+    border: 1px solid var(--borde);
+    border-radius: 2px;
+    padding: 5px 10px;
+  }
+
+  .fuente-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .f-ok   { background: var(--verde); }
+  .f-soon { background: var(--gris-medio); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    nav { padding: 0 16px; }
+    .nav-search { margin: 0 12px; }
+    .wrap { padding: 32px 16px 80px; }
+    .verdict-top { flex-direction: column; }
+    .verdict-score { border-right: none; border-bottom: 1px solid var(--borde); }
+    .verdict-bar-wrap { padding: 14px 20px; }
+    .paywall-cta { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .paywall-cta-right { width: 100%; align-items: stretch; }
+    .paywall-price-num { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">delincuente<span>.cl</span></a>
+  <div class="nav-search">
+    <input type="text" value="Importadora Pacífico Ltda." />
+    <button>Buscar</button>
+  </div>
+  <a href="#" class="nav-right">Ingresar</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- 1. IDENTIDAD -->
+  <div class="identity">
+    <div class="identity-meta">
+      <span>RUT 76.543.210-K</span>
+      <span class="identity-meta-sep">·</span>
+      <span>Empresa</span>
+      <span class="identity-meta-sep">·</span>
+      <span>Consultado hoy</span>
+    </div>
+    <div class="identity-name">Importadora<br>Pacífico Ltda.</div>
+    <div class="identity-pills">
+      <span class="pill">Soc. de Responsabilidad Limitada</span>
+      <span class="pill">Activa desde Mar 2018</span>
+      <span class="pill">Comercio exterior</span>
+    </div>
+  </div>
+
+  <!-- 2. VEREDICTO -->
+  <div class="verdict">
+    <div class="verdict-top">
+      <div class="verdict-score">
+        <div class="verdict-score-label">Score de riesgo</div>
+        <div class="verdict-score-num">28</div>
+        <div class="verdict-score-den">de 100</div>
+      </div>
+      <div class="verdict-badge-area">
+        <span class="verdict-badge badge-alto">Riesgo alto</span>
+        <p class="verdict-resumen">
+          Se detectaron <strong>alertas críticas</strong> en SII y UAF. Revisar antes de cualquier transacción.
+        </p>
+      </div>
+    </div>
+    <div class="verdict-bar-wrap">
+      <div class="verdict-bar-track">
+        <div class="verdict-bar-fill" id="barFill"></div>
+      </div>
+      <div class="verdict-bar-legend">
+        <span>0 — Riesgo alto</span>
+        <span>50 — Medio</span>
+        <span>100 — Sin alertas</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ALERTA UAF -->
+  <div class="alerta">
+    <div class="alerta-dot"></div>
+    <div class="alerta-body">
+      <span class="alerta-title">Alerta UAF</span>
+      Esta entidad aparece en la lista de personas y empresas relacionadas con investigaciones de lavado de activos publicada por la Unidad de Análisis Financiero de Chile.
+    </div>
+  </div>
+
+  <!-- 4. DATOS GRATIS -->
+  <span class="section-label">Datos verificados — acceso gratuito</span>
+  <div class="data-table">
+    <div class="data-row">
+      <div class="data-row-left">
+        <span class="data-source">RES</span>
+        <span class="data-label">Razón social</span>
+      </div>
+      <span class="data-value v-ok">✓ Confirmada</span>
+    </div>
+    <div class="data-row">
+      <div class="data-row-left">
+        <span class="data-source">RES</span>
+        <span class="data-label">Tipo de sociedad</span>
+      </div>
+      <span class="data-value v-muted">Soc. Limitada</span>
+    </div>
+    <div class="data-row">
+      <div class="data-row-left">
+        <span class="data-source">RES</span>
+        <span class="data-label">Fecha de constitución</span>
+      </div>
+      <span class="data-value v-muted">14 Mar 2018</span>
+    </div>
+    <div class="data-row">
+      <div class="data-row-left">
+        <span class="data-source">SII</span>
+        <span class="data-label">Estado tributario</span>
+      </div>
+      <span class="data-value v-warn">Observado</span>
+    </div>
+    <div class="data-row">
+      <div class="data-row-left">
+        <span class="data-source">SII</span>
+        <span class="data-label">Inicio de actividades</span>
+      </div>
+      <span class="data-value v-ok">Activo</span>
+    </div>
+    <div class="data-row">
+      <div class="data-row-left">
+        <span class="data-source">UAF</span>
+        <span class="data-label">Lista de sancionados</span>
+      </div>
+      <span class="data-value v-bad">Aparece</span>
+    </div>
+  </div>
+
+  <!-- 5. PAYWALL -->
+  <span class="section-label">Reporte completo</span>
+  <div class="paywall">
+    <!-- preview borrosa -->
+    <div class="paywall-preview">
+      <div class="data-table" style="border:none;border-radius:0;margin:0;">
+        <div class="data-row">
+          <div class="data-row-left">
+            <span class="data-source">RES</span>
+            <span class="data-label">████████ ████████ — Socio 50%</span>
+          </div>
+          <span class="data-value v-muted">RUT ██████</span>
+        </div>
+        <div class="data-row">
+          <div class="data-row-left">
+            <span class="data-source">RES</span>
+            <span class="data-label">████████ ████ — Socio 50%</span>
+          </div>
+          <span class="data-value v-muted">RUT ██████</span>
+        </div>
+        <div class="data-row">
+          <div class="data-row-left">
+            <span class="data-source">PJUD</span>
+            <span class="data-label">Juicios civiles activos</span>
+          </div>
+          <span class="data-value v-bad">2 activos</span>
+        </div>
+        <div class="data-row">
+          <div class="data-row-left">
+            <span class="data-source">CMF</span>
+            <span class="data-label">Deudas financieras</span>
+          </div>
+          <span class="data-value v-bad">$4.200.000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="paywall-cta">
+      <div class="paywall-cta-left">
+        <div class="paywall-cta-title">Ver reporte completo</div>
+        <ul class="paywall-cta-items">
+          <li>Socios y directores con RUT</li>
+          <li>Juicios civiles (PJUD)</li>
+          <li>Deudas financieras (CMF)</li>
+          <li>Reclamos SERNAC</li>
+        </ul>
+      </div>
+      <div class="paywall-cta-right">
+        <span class="paywall-price-label">Precio único</span>
+        <span class="paywall-price-num">$990</span>
+        <span class="paywall-price-sub">sin suscripción</span>
+        <button class="btn-primary">Pagar con tarjeta</button>
+        <div class="paywall-divider"><span>o</span></div>
+        <button class="btn-google">
+          <svg class="g-icon" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
+            <path d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 7.293C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          Ingresar con Google
+        </button>
+        <p class="paywall-legal">Al pagar aceptas los Términos de uso</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. FUENTES -->
+  <span class="section-label" style="margin-top:32px;">Fuentes consultadas</span>
+  <div class="fuentes">
+    <span class="fuente-chip"><span class="fuente-dot f-ok"></span>RES — Registro Empresas</span>
+    <span class="fuente-chip"><span class="fuente-dot f-ok"></span>SII — Tributario</span>
+    <span class="fuente-chip"><span class="fuente-dot f-ok"></span>UAF — Sancionados</span>
+    <span class="fuente-chip"><span class="fuente-dot f-soon"></span>PJUD — pronto</span>
+    <span class="fuente-chip"><span class="fuente-dot f-soon"></span>CMF — pronto</span>
+    <span class="fuente-chip"><span class="fuente-dot f-soon"></span>SERNAC — pronto</span>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('barFill').style.width = '28%';
+    }, 200);
+  });
+</script>
+</body>
+</html>
