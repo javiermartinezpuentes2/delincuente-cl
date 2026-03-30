@@ -3,1126 +3,769 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- ═══ SEO ═══ -->
 <title>delincuente.cl — Verificación comercial en Chile</title>
-<meta name="description" content="Antecedentes comerciales de cualquier empresa o persona natural en Chile. Morosidades, protestos, deudas SII y score de riesgo. Primera búsqueda gratis.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://delincuente.cl/">
-
-<!-- ═══ OPEN GRAPH (WhatsApp, LinkedIn, Twitter) ═══ -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://delincuente.cl/">
-<meta property="og:title" content="delincuente.cl — Verificación comercial en Chile">
-<meta property="og:description" content="Antecedentes comerciales de cualquier empresa o persona natural en Chile. Morosidades, protestos, deudas SII y score de riesgo.">
-<meta property="og:image" content="https://delincuente.cl/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-
-<!-- ═══ FUENTES ═══ -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ════════════════════════════════════════
-   RESET & TOKENS
-════════════════════════════════════════ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --rojo:        #C8001A;
-  --rojo-hover:  #A80016;
-  --negro:       #0F0F0F;
-  --blanco:      #F7F6F2;
-  --gris-claro:  #EFEFEB;
-  --gris-medio:  #D8D7D3;
-  --gris-texto:  #767672;
-  --negro-texto: #1A1A18;
-  --verde:       #1A7A3C;
-  --amarillo:    #A86800;
-  --borde:       rgba(0,0,0,0.08);
-  --borde-fuerte:rgba(0,0,0,0.15);
-  --sombra:      0 4px 24px rgba(0,0,0,0.07);
-  --radio:       3px;
-  --transition:  0.18s ease;
-}
+  :root {
+    --rojo: #C8001A;
+    --negro: #0F0F0F;
+    --blanco: #F7F6F2;
+    --gris-claro: #EFEFEB;
+    --gris-medio: #D8D7D3;
+    --gris-texto: #767672;
+    --negro-texto: #1A1A18;
+    --verde: #1A7A3C;
+    --amarillo: #A86800;
+    --borde: rgba(0,0,0,0.1);
+    --borde-fuerte: rgba(0,0,0,0.18);
+  }
 
-html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-body {
-  background: var(--blanco);
-  color: var(--negro-texto);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  overflow-x: hidden;
-}
+  body {
+    background: var(--blanco);
+    color: var(--negro-texto);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
 
-/* ════════════════════════════════════════
-   NAV
-════════════════════════════════════════ */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 48px;
-  background: rgba(247,246,242,0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--borde);
-  transition: box-shadow var(--transition);
-}
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(247,246,242,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--borde);
+  }
 
-nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.02em;
+    color: var(--negro);
+    text-decoration: none;
+  }
 
-.nav-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 26px;
-  letter-spacing: 0.02em;
-  color: var(--negro);
-  text-decoration: none;
-  flex-shrink: 0;
-}
-.nav-logo span { color: var(--rojo); }
+  .nav-logo span { color: var(--rojo); }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  list-style: none;
-}
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
 
-.nav-links a {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--gris-texto);
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  transition: color var(--transition);
-}
-.nav-links a:hover { color: var(--negro-texto); }
+  .nav-links a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gris-texto);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: color 0.15s;
+  }
 
-.nav-cta {
-  background: var(--negro) !important;
-  color: var(--blanco) !important;
-  padding: 8px 20px;
-  border-radius: var(--radio);
-}
-.nav-cta:hover { background: #2a2a2a !important; }
+  .nav-links a:hover { color: var(--negro-texto); }
 
-/* Hamburguesa */
-.nav-hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  z-index: 300;
-}
-.nav-hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--negro-texto);
-  border-radius: 2px;
-  transition: all 0.25s ease;
-  transform-origin: center;
-}
-.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .nav-cta {
+    background: var(--negro) !important;
+    color: var(--blanco) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+  }
 
-/* Menú mobile */
-.nav-mobile-menu {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: var(--blanco);
-  z-index: 150;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-.nav-mobile-menu.open { display: flex; }
-.nav-mobile-menu a {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 44px;
-  letter-spacing: 0.04em;
-  color: var(--negro);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-.nav-mobile-menu a:hover { color: var(--rojo); }
-.nav-mobile-menu .nav-mobile-cta {
-  font-size: 20px;
-  background: var(--negro);
-  color: var(--blanco) !important;
-  padding: 14px 48px;
-  border-radius: var(--radio);
-}
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 40px 100px;
+    text-align: center;
+    border-bottom: 1px solid var(--borde);
+  }
 
-/* ════════════════════════════════════════
-   HERO
-════════════════════════════════════════ */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 140px 40px 100px;
-  text-align: center;
-  border-bottom: 1px solid var(--borde);
-  position: relative;
-  overflow: hidden;
-}
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.1s forwards;
+  }
 
-/* Grid de fondo sutil */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--borde) 1px, transparent 1px),
-    linear-gradient(90deg, var(--borde) 1px, transparent 1px);
-  background-size: 64px 64px;
-  pointer-events: none;
-  z-index: 0;
-}
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 180px);
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    color: var(--negro);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.2s forwards;
+  }
 
-.hero > * { position: relative; z-index: 1; }
+  .hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(16px, 2vw, 19px);
+    font-weight: 400;
+    color: var(--gris-texto);
+    max-width: 520px;
+    margin: 0 auto 52px;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.3s forwards;
+  }
 
-.hero-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-  margin-bottom: 28px;
-  opacity: 0;
-  animation: fadeUp 0.5s ease 0.1s forwards;
-}
+  .hero-subtitle strong { color: var(--negro-texto); font-weight: 500; }
 
-.hero-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(80px, 14vw, 180px);
-  line-height: 0.88;
-  letter-spacing: 0.01em;
-  color: var(--negro);
-  margin-bottom: 32px;
-  opacity: 0;
-  animation: fadeUp 0.55s ease 0.2s forwards;
-}
+  /* ─── BUSCADOR ─── */
+  .search-wrapper {
+    width: 100%;
+    max-width: 640px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.4s forwards;
+  }
 
-.hero-subtitle {
-  font-size: clamp(16px, 2vw, 19px);
-  font-weight: 400;
-  color: var(--gris-texto);
-  max-width: 520px;
-  margin: 0 auto 52px;
-  line-height: 1.7;
-  opacity: 0;
-  animation: fadeUp 0.55s ease 0.3s forwards;
-}
-.hero-subtitle strong { color: var(--negro-texto); font-weight: 500; }
+  .search-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--borde-fuerte);
+  }
 
-/* ════════════════════════════════════════
-   BUSCADOR
-════════════════════════════════════════ */
-.search-wrapper {
-  width: 100%;
-  max-width: 640px;
-  opacity: 0;
-  animation: fadeUp 0.55s ease 0.4s forwards;
-}
+  .search-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    padding: 8px 18px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: -1px;
+  }
 
-.search-tabs {
-  display: flex;
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--borde-fuerte);
-}
+  .search-tab:hover { color: var(--negro-texto); }
 
-.search-tab {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-  padding: 8px 18px;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: all var(--transition);
-  margin-bottom: -1px;
-}
-.search-tab:hover { color: var(--negro-texto); }
-.search-tab.active {
-  color: var(--negro-texto);
-  border-bottom-color: var(--negro);
-}
+  .search-tab.active {
+    color: var(--negro-texto);
+    border-bottom-color: var(--negro);
+  }
 
-.search-box {
-  display: flex;
-  align-items: stretch;
-  background: #fff;
-  border: 1.5px solid var(--negro);
-  border-radius: var(--radio);
-  overflow: hidden;
-  transition: box-shadow 0.2s;
-}
-.search-box:focus-within {
-  box-shadow: 0 0 0 4px rgba(15,15,15,0.10);
-}
+  .search-box {
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border: 1.5px solid var(--negro);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
 
-.search-box input {
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  padding: 17px 22px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 17px;
-  color: var(--negro-texto);
-  min-width: 0;
-}
-.search-box input::placeholder { color: var(--gris-medio); }
+  .search-box:focus-within {
+    box-shadow: 0 0 0 3px rgba(15,15,15,0.12);
+  }
 
-.search-btn {
-  background: var(--negro);
-  border: none;
-  color: var(--blanco);
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 19px;
-  letter-spacing: 0.08em;
-  padding: 0 34px;
-  cursor: pointer;
-  transition: background var(--transition);
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.search-btn:hover { background: #2a2a2a; }
-.search-btn:active { background: var(--rojo); }
+  .search-box input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 17px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    color: var(--negro-texto);
+    min-width: 0;
+  }
 
-.search-hint {
-  font-family: 'DM Mono', monospace;
-  font-size: 10.5px;
-  color: var(--gris-texto);
-  margin-top: 10px;
-  letter-spacing: 0.05em;
-  text-align: left;
-  padding-left: 2px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.search-hint::before {
-  content: '';
-  display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--verde);
-  border-radius: 50%;
-  flex-shrink: 0;
-  box-shadow: 0 0 0 2px rgba(26,122,60,0.2);
-}
+  .search-box input::placeholder { color: var(--gris-medio); }
 
-/* ════════════════════════════════════════
-   TICKER
-════════════════════════════════════════ */
-.ticker-wrap {
-  overflow: hidden;
-  background: var(--negro);
-  padding: 11px 0;
-}
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: ticker 40s linear infinite;
-}
-.ticker-item {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(247,246,242,0.5);
-  padding: 0 36px;
-  white-space: nowrap;
-}
-.ticker-dot { color: var(--rojo); }
+  .search-btn {
+    background: var(--negro);
+    border: none;
+    color: var(--blanco);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 19px;
+    letter-spacing: 0.08em;
+    padding: 0 34px;
+    cursor: pointer;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
 
-/* ════════════════════════════════════════
-   STATS
-════════════════════════════════════════ */
-.stats-strip {
-  border-bottom: 1px solid var(--borde);
-  display: flex;
-  justify-content: center;
-  background: var(--blanco);
-}
-.stat {
-  text-align: center;
-  padding: 36px 60px;
-  border-right: 1px solid var(--borde);
-}
-.stat:last-child { border-right: none; }
-.stat-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 46px;
-  line-height: 1;
-  color: var(--negro);
-  display: block;
-}
-.stat-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-  margin-top: 5px;
-  display: block;
-}
+  .search-btn:hover { background: #333; }
 
-/* ════════════════════════════════════════
-   SECCIONES
-════════════════════════════════════════ */
-.section {
-  padding: 96px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.section-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-  margin-bottom: 14px;
-  display: block;
-}
-.section-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(44px, 5.5vw, 72px);
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  color: var(--negro);
-  margin-bottom: 56px;
-}
+  .search-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gris-texto);
+    margin-top: 10px;
+    letter-spacing: 0.05em;
+    text-align: left;
+    padding-left: 2px;
+  }
 
-/* ════════════════════════════════════════
-   CASOS DE USO
-════════════════════════════════════════ */
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--borde-fuerte);
-  border: 1px solid var(--borde-fuerte);
-}
-.case-card {
-  background: var(--blanco);
-  padding: 40px;
-  transition: background var(--transition);
-  cursor: default;
-}
-.case-card:hover { background: var(--gris-claro); }
-.case-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 48px;
-  line-height: 1;
-  color: var(--gris-medio);
-  margin-bottom: 14px;
-  display: block;
-  transition: color var(--transition);
-}
-.case-card:hover .case-num { color: var(--rojo); }
-.case-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--negro-texto);
-  margin-bottom: 10px;
-}
-.case-desc {
-  font-size: 14px;
-  color: var(--gris-texto);
-  line-height: 1.7;
-}
-.case-tag {
-  display: inline-block;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-  border: 1px solid var(--borde-fuerte);
-  padding: 3px 8px;
-  margin-top: 16px;
-  border-radius: 1px;
-}
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--negro);
+    padding: 11px 0;
+  }
 
-/* ════════════════════════════════════════
-   TRUST / FUENTES
-════════════════════════════════════════ */
-.trust-section {
-  background: var(--negro);
-  padding: 72px 48px;
-  text-align: center;
-}
-.trust-section .section-label { color: rgba(247,246,242,0.35); }
-.trust-section .section-title {
-  color: var(--blanco);
-  margin-bottom: 16px;
-}
-.trust-subtitle {
-  font-size: 15px;
-  color: rgba(247,246,242,0.45);
-  max-width: 560px;
-  margin: 0 auto 56px;
-  line-height: 1.7;
-}
-.sources-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  max-width: 900px;
-  margin: 0 auto 48px;
-}
-.source-pill {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(247,246,242,0.12);
-  border-radius: 2px;
-  padding: 10px 18px;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(247,246,242,0.55);
-  transition: all var(--transition);
-}
-.source-pill:hover {
-  border-color: rgba(247,246,242,0.3);
-  color: rgba(247,246,242,0.9);
-  background: rgba(247,246,242,0.05);
-}
-.source-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.source-dot.api    { background: var(--verde); }
-.source-dot.scrape { background: var(--amarillo); }
-.sources-legend {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(247,246,242,0.3);
-}
-.sources-legend span { display: flex; align-items: center; gap: 7px; }
-.legend-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 35s linear infinite;
+  }
 
-/* ════════════════════════════════════════
-   DEMO
-════════════════════════════════════════ */
-.demo-section {
-  background: var(--gris-claro);
-  padding: 96px 48px;
-  border-top: 1px solid var(--borde);
-  border-bottom: 1px solid var(--borde);
-}
-.demo-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
+  .ticker-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(247,246,242,0.6);
+    padding: 0 36px;
+    white-space: nowrap;
+  }
 
-/* Card demo */
-.demo-card {
-  background: #fff;
-  border: 1px solid var(--borde-fuerte);
-  border-radius: var(--radio);
-  overflow: hidden;
-  box-shadow: var(--sombra);
-}
-.demo-card-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--borde);
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-}
-.demo-company-name {
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--negro-texto);
-  display: block;
-}
-.demo-company-rut {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--gris-texto);
-  margin-top: 2px;
-  display: block;
-}
+  .ticker-dot { color: var(--rojo); }
 
-.riesgo-badge {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 2px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.riesgo-alto   { background: rgba(200,0,26,0.07); color: var(--rojo); border: 1px solid rgba(200,0,26,0.2); }
-.riesgo-medio  { background: rgba(168,104,0,0.07); color: var(--amarillo); border: 1px solid rgba(168,104,0,0.2); }
-.riesgo-bajo   { background: rgba(26,122,60,0.07); color: var(--verde); border: 1px solid rgba(26,122,60,0.2); }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 
-.demo-card-body { padding: 20px 24px; }
+  /* ─── STATS ─── */
+  .stats-strip {
+    border-bottom: 1px solid var(--borde);
+    padding: 0 48px;
+    display: flex;
+    justify-content: center;
+    background: var(--blanco);
+  }
 
-.score-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-.score-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-}
-.score-value {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 24px;
-  color: var(--rojo);
-}
-.score-bar {
-  height: 5px;
-  background: var(--gris-claro);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.score-fill {
-  height: 100%;
-  width: 28%;
-  background: linear-gradient(90deg, var(--rojo), #ff3355);
-  border-radius: 2px;
-}
+  .stat {
+    text-align: center;
+    padding: 36px 60px;
+    border-right: 1px solid var(--borde);
+  }
 
-.demo-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--borde);
-  font-size: 13px;
-}
-.demo-row:last-child { border-bottom: none; }
-.demo-row-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-}
-.demo-row-value { font-weight: 500; color: var(--negro-texto); }
-.demo-row-value.bad  { color: var(--rojo); }
-.demo-row-value.warn { color: var(--amarillo); }
-.demo-row-value.ok   { color: var(--verde); }
+  .stat:last-child { border-right: none; }
 
-.demo-blur-row {
-  filter: blur(4px);
-  opacity: 0.3;
-  user-select: none;
-  pointer-events: none;
-}
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 44px;
+    line-height: 1;
+    color: var(--negro);
+    display: block;
+  }
 
-.demo-lock {
-  margin: 0 16px 16px;
-  background: var(--gris-claro);
-  border: 1px solid var(--borde-fuerte);
-  padding: 14px 18px;
-  border-radius: var(--radio);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.demo-lock-text {
-  font-size: 13px;
-  color: var(--gris-texto);
-  line-height: 1.5;
-}
-.demo-lock-text strong {
-  color: var(--negro-texto);
-  display: block;
-  margin-bottom: 2px;
-  font-weight: 600;
-}
-.demo-lock-btn {
-  margin-left: auto;
-  background: var(--rojo);
-  color: var(--blanco);
-  border: none;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 10px 18px;
-  border-radius: var(--radio);
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background var(--transition);
-}
-.demo-lock-btn:hover { background: var(--rojo-hover); }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-top: 5px;
+    display: block;
+  }
 
-/* Copy lado izquierdo */
-.demo-checklist {
-  list-style: none;
-  margin-top: 28px;
-}
-.demo-checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-  color: var(--gris-texto);
-  padding: 10px 0;
-  border-bottom: 1px solid var(--borde);
-  line-height: 1.5;
-}
-.demo-checklist li:last-child { border-bottom: none; }
-.demo-check {
-  width: 18px; height: 18px;
-  background: var(--negro);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-.demo-check svg { width: 10px; height: 10px; }
+  /* ─── SECCIONES ─── */
+  .section {
+    padding: 96px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-/* ════════════════════════════════════════
-   PRICING
-════════════════════════════════════════ */
-.pricing-section {
-  padding: 96px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--borde-fuerte);
-  border: 1px solid var(--borde-fuerte);
-  margin-top: 56px;
-}
-.plan-card {
-  background: var(--blanco);
-  padding: 40px 36px;
-  position: relative;
-}
-.plan-card.featured { background: var(--negro); }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 14px;
+    display: block;
+  }
 
-.plan-tag {
-  display: inline-block;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--rojo);
-  color: var(--blanco);
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 5.5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--negro);
+    margin-bottom: 56px;
+  }
 
-.plan-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.04em;
-  color: var(--negro-texto);
-  margin-bottom: 4px;
-}
-.plan-card.featured .plan-name { color: var(--blanco); }
+  /* ─── CASOS ─── */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--borde-fuerte);
+    border: 1px solid var(--borde-fuerte);
+  }
 
-.plan-desc {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gris-texto);
-  margin-bottom: 28px;
-}
-.plan-card.featured .plan-desc { color: rgba(247,246,242,0.4); }
+  .case-card {
+    background: var(--blanco);
+    padding: 40px;
+    transition: background 0.2s;
+  }
 
-.plan-price {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  margin-bottom: 28px;
-  padding-bottom: 28px;
-  border-bottom: 1px solid var(--borde);
-}
-.plan-card.featured .plan-price { border-bottom-color: rgba(255,255,255,0.1); }
+  .case-card:hover { background: var(--gris-claro); }
 
-.plan-currency {
-  font-family: 'DM Mono', monospace;
-  font-size: 16px;
-  color: var(--gris-texto);
-}
-.plan-card.featured .plan-currency { color: rgba(247,246,242,0.35); }
+  .case-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--gris-medio);
+    margin-bottom: 14px;
+    display: block;
+  }
 
-.plan-amount {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 56px;
-  line-height: 1;
-  color: var(--negro);
-}
-.plan-card.featured .plan-amount { color: var(--blanco); }
+  .case-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--negro-texto);
+    margin-bottom: 10px;
+  }
 
-.plan-per {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--gris-texto);
-}
-.plan-card.featured .plan-per { color: rgba(247,246,242,0.35); }
+  .case-desc {
+    font-size: 14px;
+    color: var(--gris-texto);
+    line-height: 1.65;
+  }
 
-.plan-features {
-  list-style: none;
-  margin-bottom: 32px;
-}
-.plan-features li {
-  font-size: 14px;
-  color: var(--gris-texto);
-  padding: 9px 0;
-  border-bottom: 1px solid var(--borde);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.plan-features li:last-child { border-bottom: none; }
-.plan-card.featured .plan-features li {
-  color: rgba(247,246,242,0.5);
-  border-bottom-color: rgba(255,255,255,0.07);
-}
-.plan-features li::before {
-  content: '';
-  width: 4px; height: 4px;
-  background: var(--gris-medio);
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.plan-card.featured .plan-features li::before { background: rgba(247,246,242,0.2); }
-.plan-features li strong { color: var(--negro-texto); font-weight: 500; }
-.plan-card.featured .plan-features li strong { color: var(--blanco); }
+  .case-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    border: 1px solid var(--borde-fuerte);
+    padding: 3px 8px;
+    margin-top: 16px;
+    border-radius: 1px;
+  }
 
-.plan-btn {
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 13px;
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1.5px solid var(--borde-fuerte);
-  color: var(--negro-texto);
-  background: none;
-  cursor: pointer;
-  transition: all var(--transition);
-  border-radius: var(--radio);
-}
-.plan-btn:hover { background: var(--negro); color: var(--blanco); border-color: var(--negro); }
-.plan-card.featured .plan-btn {
-  background: var(--blanco);
-  color: var(--negro);
-  border-color: var(--blanco);
-}
-.plan-card.featured .plan-btn:hover { background: var(--gris-claro); }
+  /* ─── DEMO ─── */
+  .demo-section {
+    background: var(--gris-claro);
+    padding: 96px 48px;
+    border-top: 1px solid var(--borde);
+    border-bottom: 1px solid var(--borde);
+  }
 
-/* ════════════════════════════════════════
-   FAQ
-════════════════════════════════════════ */
-.faq-section {
-  padding: 96px 48px;
-  max-width: 800px;
-  margin: 0 auto;
-  border-top: 1px solid var(--borde);
-}
-.faq-item {
-  border-bottom: 1px solid var(--borde);
-}
-.faq-question {
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  padding: 22px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--negro-texto);
-  gap: 16px;
-  transition: color var(--transition);
-}
-.faq-question:hover { color: var(--rojo); }
-.faq-icon {
-  width: 20px; height: 20px;
-  border: 1.5px solid var(--borde-fuerte);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 16px;
-  color: var(--gris-texto);
-  transition: all var(--transition);
-}
-.faq-item.open .faq-icon { background: var(--negro); color: var(--blanco); border-color: var(--negro); }
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.2s;
-  font-size: 14px;
-  color: var(--gris-texto);
-  line-height: 1.75;
-}
-.faq-item.open .faq-answer { max-height: 300px; padding-bottom: 22px; }
+  .demo-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
 
-/* ════════════════════════════════════════
-   CTA FINAL
-════════════════════════════════════════ */
-.cta-section {
-  background: var(--rojo);
-  padding: 80px 48px;
-  text-align: center;
-}
-.cta-section .section-label { color: rgba(247,246,242,0.5); }
-.cta-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(48px, 7vw, 96px);
-  line-height: 0.92;
-  color: var(--blanco);
-  margin-bottom: 32px;
-  letter-spacing: 0.01em;
-}
-.cta-btn {
-  display: inline-block;
-  background: var(--blanco);
-  color: var(--rojo);
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 16px 40px;
-  border-radius: var(--radio);
-  text-decoration: none;
-  transition: all var(--transition);
-}
-.cta-btn:hover { background: var(--negro); color: var(--blanco); }
+  .demo-card {
+    background: #fff;
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 3px;
+    overflow: hidden;
+  }
 
-/* ════════════════════════════════════════
-   FOOTER
-════════════════════════════════════════ */
-footer {
-  border-top: 1px solid var(--borde);
-  background: var(--blanco);
-}
-.footer-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 48px 48px 32px;
-  gap: 40px;
-  border-bottom: 1px solid var(--borde);
-}
-.footer-brand .footer-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 24px;
-  color: var(--gris-texto);
-  letter-spacing: 0.02em;
-  display: block;
-  margin-bottom: 10px;
-}
-.footer-brand .footer-logo span { color: var(--rojo); }
-.footer-tagline {
-  font-size: 13px;
-  color: var(--gris-texto);
-  max-width: 240px;
-  line-height: 1.6;
-}
-.footer-nav-group h4 {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--negro-texto);
-  margin-bottom: 14px;
-}
-.footer-nav-group ul { list-style: none; }
-.footer-nav-group li { margin-bottom: 9px; }
-.footer-nav-group a {
-  font-size: 13px;
-  color: var(--gris-texto);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-.footer-nav-group a:hover { color: var(--negro-texto); }
+  .demo-card-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--borde);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
 
-.footer-bottom {
-  padding: 20px 48px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.footer-legal {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--gris-medio);
-  letter-spacing: 0.05em;
-  line-height: 1.6;
-  max-width: 640px;
-}
-.footer-copy {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--gris-medio);
-  white-space: nowrap;
-}
+  .demo-company-name {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--negro-texto);
+    display: block;
+  }
 
-/* ════════════════════════════════════════
-   SCROLL REVEAL
-════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+  .demo-company-rut {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gris-texto);
+    margin-top: 2px;
+    display: block;
+  }
 
-/* ════════════════════════════════════════
-   ANIMACIONES
-════════════════════════════════════════ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
+  /* SEMÁFORO — único lugar donde vive el color */
+  .riesgo-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
 
-/* ════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════ */
-@media (max-width: 900px) {
-  nav { padding: 16px 24px; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
+  .riesgo-alto   { background: rgba(200,0,26,0.08); color: var(--rojo); border: 1px solid rgba(200,0,26,0.25); }
+  .riesgo-medio  { background: rgba(168,104,0,0.08); color: var(--amarillo); border: 1px solid rgba(168,104,0,0.25); }
+  .riesgo-bajo   { background: rgba(26,122,60,0.08); color: var(--verde); border: 1px solid rgba(26,122,60,0.25); }
 
-  .hero { padding: 110px 24px 72px; }
-  .hero-title { font-size: clamp(64px, 18vw, 120px); }
+  .demo-card-body { padding: 20px 24px; }
 
-  .stats-strip { flex-wrap: wrap; }
-  .stat { padding: 28px 32px; border-right: none; border-bottom: 1px solid var(--borde); width: 50%; }
-  .stat:nth-child(even) { border-right: none; }
-  .stat:nth-child(3),
-  .stat:nth-child(4) { border-bottom: none; }
+  .score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
 
-  .section, .pricing-section, .faq-section { padding: 64px 24px; }
-  .demo-section, .trust-section { padding: 64px 24px; }
-  .cta-section { padding: 64px 24px; }
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+  }
 
-  .cases-grid  { grid-template-columns: 1fr; }
-  .demo-inner  { grid-template-columns: 1fr; gap: 40px; }
-  .pricing-grid { grid-template-columns: 1fr; }
+  .score-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--rojo);
+  }
 
-  .footer-top { flex-direction: column; padding: 40px 24px 28px; }
-  .footer-bottom { flex-direction: column; gap: 12px; padding: 20px 24px; }
+  .score-bar {
+    height: 5px;
+    background: var(--gris-claro);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
 
-  .sources-grid { gap: 8px; }
-}
+  .score-fill {
+    height: 100%;
+    width: 28%;
+    background: var(--rojo);
+    border-radius: 2px;
+  }
 
-@media (max-width: 480px) {
-  .search-btn { padding: 0 22px; font-size: 17px; }
-  .stat { width: 50%; padding: 24px 16px; }
-  .demo-lock { flex-direction: column; align-items: flex-start; }
-  .demo-lock-btn { width: 100%; text-align: center; }
-}
+  .demo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--borde);
+    font-size: 13px;
+  }
+
+  .demo-row:last-child { border-bottom: none; }
+
+  .demo-row-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+  }
+
+  .demo-row-value { font-weight: 500; color: var(--negro-texto); }
+  .demo-row-value.bad    { color: var(--rojo); }
+  .demo-row-value.warn   { color: var(--amarillo); }
+  .demo-row-value.ok     { color: var(--verde); }
+
+  .demo-blur-row { filter: blur(4px); opacity: 0.35; user-select: none; pointer-events: none; }
+
+  .demo-lock {
+    margin: 0 16px 16px;
+    background: var(--gris-claro);
+    border: 1px solid var(--borde-fuerte);
+    padding: 14px 18px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .demo-lock-text { font-size: 13px; color: var(--gris-texto); line-height: 1.5; }
+  .demo-lock-text strong { color: var(--negro-texto); display: block; margin-bottom: 2px; font-weight: 600; }
+
+  .demo-lock-btn {
+    margin-left: auto;
+    background: var(--negro);
+    color: var(--blanco);
+    border: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+
+  .demo-lock-btn:hover { background: #333; }
+
+  /* ─── PRICING ─── */
+  .pricing-section {
+    padding: 96px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--borde-fuerte);
+    border: 1px solid var(--borde-fuerte);
+    margin-top: 56px;
+  }
+
+  .plan-card {
+    background: var(--blanco);
+    padding: 40px 36px;
+    position: relative;
+  }
+
+  .plan-card.featured { background: var(--negro); }
+
+  .plan-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--negro-texto);
+    margin-bottom: 4px;
+  }
+
+  .plan-card.featured .plan-name { color: var(--blanco); }
+
+  .plan-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    margin-bottom: 28px;
+  }
+
+  .plan-card.featured .plan-desc { color: rgba(247,246,242,0.45); }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .plan-card.featured .plan-price { border-bottom-color: rgba(255,255,255,0.1); }
+
+  .plan-currency {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    color: var(--gris-texto);
+  }
+
+  .plan-card.featured .plan-currency { color: rgba(247,246,242,0.4); }
+
+  .plan-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    line-height: 1;
+    color: var(--negro);
+  }
+
+  .plan-card.featured .plan-amount { color: var(--blanco); }
+
+  .plan-per {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gris-texto);
+  }
+
+  .plan-card.featured .plan-per { color: rgba(247,246,242,0.4); }
+
+  .plan-features {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+
+  .plan-features li {
+    font-size: 14px;
+    color: var(--gris-texto);
+    padding: 9px 0;
+    border-bottom: 1px solid var(--borde);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .plan-card.featured .plan-features li {
+    color: rgba(247,246,242,0.55);
+    border-bottom-color: rgba(255,255,255,0.07);
+  }
+
+  .plan-features li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: var(--gris-medio);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .plan-card.featured .plan-features li::before { background: rgba(247,246,242,0.25); }
+
+  .plan-features li strong { color: var(--negro-texto); font-weight: 500; }
+  .plan-card.featured .plan-features li strong { color: var(--blanco); }
+
+  .plan-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 13px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1.5px solid var(--borde-fuerte);
+    color: var(--negro-texto);
+    background: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-radius: 2px;
+  }
+
+  .plan-btn:hover { background: var(--negro); color: var(--blanco); border-color: var(--negro); }
+
+  .plan-card.featured .plan-btn {
+    background: var(--blanco);
+    color: var(--negro);
+    border-color: var(--blanco);
+  }
+
+  .plan-card.featured .plan-btn:hover { background: var(--gris-claro); }
+
+  .plan-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--blanco);
+    color: var(--negro);
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--borde);
+    padding: 36px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--blanco);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gris-texto);
+    letter-spacing: 0.02em;
+  }
+
+  .footer-logo span { color: var(--rojo); }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris-texto);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover { color: var(--negro-texto); }
+
+  .footer-legal {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gris-medio);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── ANIM ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 110px 24px 72px; }
+    .stats-strip { flex-wrap: wrap; padding: 0 20px; }
+    .stat { padding: 28px 32px; border-right: none; border-bottom: 1px solid var(--borde); width: 50%; }
+    .section, .pricing-section { padding: 64px 24px; }
+    .demo-section { padding: 64px 24px; }
+    .cases-grid, .demo-inner, .pricing-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 28px 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ════════ NAV ════════ -->
-<nav id="main-nav">
+<!-- NAV -->
+<nav>
   <a href="/" class="nav-logo">delincuente<span>.cl</span></a>
-
   <ul class="nav-links">
     <li><a href="#casos">Casos de uso</a></li>
     <li><a href="#planes">Planes</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#hero-search" class="nav-cta">Buscar ahora</a></li>
+    <li><a href="#" class="nav-cta">Buscar ahora</a></li>
   </ul>
-
-  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<!-- Menú mobile -->
-<div class="nav-mobile-menu" id="mobile-menu">
-  <a href="#casos" class="mobile-link">Casos de uso</a>
-  <a href="#planes" class="mobile-link">Planes</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="#hero-search" class="nav-mobile-cta mobile-link">Buscar ahora</a>
-</div>
-
-<!-- ════════ HERO ════════ -->
-<section class="hero" id="hero-search">
+<!-- HERO -->
+<section class="hero">
   <p class="hero-eyebrow">Verificación comercial · Chile · Datos públicos</p>
   <h1 class="hero-title">Verifica.</h1>
   <p class="hero-subtitle">
@@ -1135,49 +778,37 @@ footer {
       <button class="search-tab" onclick="setTab(this,'persona')">Persona Natural</button>
     </div>
     <div class="search-box">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Nombre o RUT — ej: 76.123.456-7"
-        autocomplete="off"
-        maxlength="13"
-        inputmode="text"
-      />
+      <input type="text" id="search-input" placeholder="Nombre o RUT — ej: 76.123.456-7" autocomplete="off" />
       <button class="search-btn" onclick="handleSearch()">BUSCAR</button>
     </div>
     <p class="search-hint">Primera búsqueda gratis · Sin registro · Resultados en &lt;10 segundos</p>
   </div>
 </section>
 
-<!-- ════════ TICKER ════════ -->
-<div class="ticker-wrap" aria-hidden="true">
+<!-- TICKER -->
+<div class="ticker-wrap">
   <div class="ticker-track">
     <span class="ticker-item">Morosidades DICOM <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Protestos bancarios <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Deudas tributarias SII <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">Juicios civiles PJUD <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Juicios civiles <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Quiebras y reorganización <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Historial de pagos <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Score de riesgo <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Alertas comerciales <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">Registro de empresas SII <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">Listas UAF <span class="ticker-dot">◆</span></span>
-    <!-- duplicado para loop infinito -->
     <span class="ticker-item">Morosidades DICOM <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Protestos bancarios <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Deudas tributarias SII <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">Juicios civiles PJUD <span class="ticker-dot">◆</span></span>
+    <span class="ticker-item">Juicios civiles <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Quiebras y reorganización <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Historial de pagos <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Score de riesgo <span class="ticker-dot">◆</span></span>
     <span class="ticker-item">Alertas comerciales <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">Registro de empresas SII <span class="ticker-dot">◆</span></span>
-    <span class="ticker-item">Listas UAF <span class="ticker-dot">◆</span></span>
   </div>
 </div>
 
-<!-- ════════ STATS ════════ -->
-<div class="stats-strip reveal">
+<!-- STATS -->
+<div class="stats-strip">
   <div class="stat">
     <span class="stat-num">+2.1M</span>
     <span class="stat-label">Entidades registradas</span>
@@ -1196,31 +827,31 @@ footer {
   </div>
 </div>
 
-<!-- ════════ CASOS ════════ -->
+<!-- CASOS -->
 <div class="section" id="casos">
-  <span class="section-label reveal">¿Para quién es?</span>
-  <h2 class="section-title reveal">Antes de confiar,<br>verifica</h2>
+  <span class="section-label">¿Para quién es?</span>
+  <h2 class="section-title">Antes de confiar,<br>verifica</h2>
 
   <div class="cases-grid">
-    <div class="case-card reveal">
+    <div class="case-card">
       <span class="case-num">01</span>
       <div class="case-title">Proveedores y clientes B2B</div>
       <p class="case-desc">¿Tu nuevo proveedor tiene juicios pendientes o deudas con el SII? Entérate antes de firmar el contrato, no después de no recibir el pedido.</p>
       <span class="case-tag">Empresas</span>
     </div>
-    <div class="case-card reveal">
+    <div class="case-card">
       <span class="case-num">02</span>
       <div class="case-title">Arrendadores de propiedad</div>
       <p class="case-desc">¿El postulante tiene protestos o morosidades activas? Evita el juicio de desahucio antes de que ocurra.</p>
       <span class="case-tag">Inmobiliario</span>
     </div>
-    <div class="case-card reveal">
+    <div class="case-card">
       <span class="case-num">03</span>
       <div class="case-title">Recursos humanos</div>
       <p class="case-desc">Verifica candidatos para cargos de confianza, manejo de caja o acceso a información financiera. Sin burocracia, en segundos.</p>
       <span class="case-tag">RR.HH.</span>
     </div>
-    <div class="case-card reveal">
+    <div class="case-card">
       <span class="case-num">04</span>
       <div class="case-title">Compras en marketplace</div>
       <p class="case-desc">¿El vendedor de ese auto o departamento te genera dudas? Busca su RUT antes de hacer el depósito.</p>
@@ -1229,59 +860,21 @@ footer {
   </div>
 </div>
 
-<!-- ════════ TRUST / FUENTES ════════ -->
-<div class="trust-section">
-  <span class="section-label reveal">Fuentes de datos</span>
-  <h2 class="section-title reveal">8 fuentes oficiales.<br>Un solo reporte.</h2>
-  <p class="trust-subtitle reveal">Cruzamos datos de organismos del Estado chileno en tiempo real. Sin intermediarios, sin bases de datos desactualizadas.</p>
-
-  <div class="sources-grid reveal">
-    <div class="source-pill"><span class="source-dot api"></span>SII — Estado tributario</div>
-    <div class="source-pill"><span class="source-dot api"></span>RES — Registro de empresas</div>
-    <div class="source-pill"><span class="source-dot scrape"></span>PJUD — Juicios y causas</div>
-    <div class="source-pill"><span class="source-dot scrape"></span>SERNAC — Denuncias</div>
-    <div class="source-pill"><span class="source-dot api"></span>CMF — Regulados financieros</div>
-    <div class="source-pill"><span class="source-dot scrape"></span>Diario Oficial — Publicaciones</div>
-    <div class="source-pill"><span class="source-dot api"></span>Mercado Público — Licitaciones</div>
-    <div class="source-pill"><span class="source-dot scrape"></span>UAF — Lista de sancionados</div>
-  </div>
-
-  <div class="sources-legend reveal">
-    <span><span class="legend-dot" style="background:var(--verde)"></span>API oficial</span>
-    <span><span class="legend-dot" style="background:var(--amarillo)"></span>Datos públicos</span>
-  </div>
-</div>
-
-<!-- ════════ DEMO ════════ -->
+<!-- DEMO -->
 <div class="demo-section">
   <div class="demo-inner">
-    <div class="demo-copy reveal">
+    <div class="demo-copy">
       <span class="section-label">Ejemplo de reporte</span>
-      <h2 class="section-title" style="margin-bottom:16px">Así se ve un<br>resultado real</h2>
-      <p style="color:var(--gris-texto);font-size:15px;line-height:1.7;margin-bottom:24px;">
-        Semáforo de riesgo inmediato. Datos críticos al tope. Sin jerga legal, sin PDFs de 40 páginas.
+      <h2 class="section-title">Así se ve un<br>resultado real</h2>
+      <p style="color:var(--gris-texto);font-size:15px;line-height:1.7;margin-bottom:20px;">
+        Semáforo de riesgo inmediato. Datos críticos al tope. Sin jerga legal, sin PDFs.
       </p>
-      <ul class="demo-checklist">
-        <li>
-          <span class="demo-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          Score calculado con 8 variables ponderadas
-        </li>
-        <li>
-          <span class="demo-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          Socios, directores y representantes legales
-        </li>
-        <li>
-          <span class="demo-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          Historial de morosidades con fechas y montos
-        </li>
-        <li>
-          <span class="demo-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          Causas judiciales activas y cerradas
-        </li>
-      </ul>
+      <p style="color:var(--gris-texto);font-size:14px;line-height:1.7;">
+        El reporte completo incluye historial detallado, socios, directores y score calculado con 8 variables.
+      </p>
     </div>
 
-    <div class="demo-card reveal">
+    <div class="demo-card">
       <div class="demo-card-header">
         <div>
           <span class="demo-company-name">Importadora Pacífico Ltda.</span>
@@ -1334,13 +927,13 @@ footer {
   </div>
 </div>
 
-<!-- ════════ PRICING ════════ -->
+<!-- PRICING -->
 <div class="pricing-section" id="planes">
-  <span class="section-label reveal">Precios</span>
-  <h2 class="section-title reveal">Simple.<br>Sin sorpresas.</h2>
+  <span class="section-label">Precios</span>
+  <h2 class="section-title">Simple.<br>Sin sorpresas.</h2>
 
   <div class="pricing-grid">
-    <div class="plan-card reveal">
+    <div class="plan-card">
       <div class="plan-name">Consulta</div>
       <div class="plan-desc">Para uso ocasional</div>
       <div class="plan-price">
@@ -1354,10 +947,10 @@ footer {
         <li>Morosidades y protestos</li>
         <li>Válido por <strong>30 días</strong></li>
       </ul>
-      <a href="#hero-search" class="plan-btn">Comprar consulta</a>
+      <a href="#" class="plan-btn">Comprar consulta</a>
     </div>
 
-    <div class="plan-card featured reveal">
+    <div class="plan-card featured">
       <div class="plan-tag">Más popular</div>
       <div class="plan-name">Pack 10</div>
       <div class="plan-desc">Para uso regular</div>
@@ -1372,10 +965,10 @@ footer {
         <li>Sin vencimiento</li>
         <li>Dashboard de historial</li>
       </ul>
-      <a href="#hero-search" class="plan-btn">Comprar pack</a>
+      <a href="#" class="plan-btn">Comprar pack</a>
     </div>
 
-    <div class="plan-card reveal">
+    <div class="plan-card">
       <div class="plan-name">Empresas</div>
       <div class="plan-desc">Para equipos y volumen</div>
       <div class="plan-price">
@@ -1389,238 +982,79 @@ footer {
         <li>Alertas automáticas</li>
         <li>Multi-usuario + factura</li>
       </ul>
-      <a href="mailto:hola@delincuente.cl" class="plan-btn">Contactar ventas</a>
+      <a href="#" class="plan-btn">Contactar ventas</a>
     </div>
   </div>
 </div>
 
-<!-- ════════ FAQ ════════ -->
-<div class="faq-section" id="faq">
-  <span class="section-label reveal">Preguntas frecuentes</span>
-  <h2 class="section-title reveal">Dudas comunes</h2>
-
-  <div class="faq-item reveal">
-    <button class="faq-question" onclick="toggleFaq(this)">
-      ¿Los datos son legales? ¿Puedo usarlos?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-answer">
-      Sí. Toda la información que entregamos proviene de fuentes públicas del Estado chileno (SII, PJUD, CMF, etc.), accesibles por cualquier ciudadano. No operamos con bases de datos privadas ni DICOM. El uso de datos públicos para verificación comercial está amparado por la Ley 19.628 de protección de datos.
-    </div>
-  </div>
-
-  <div class="faq-item reveal">
-    <button class="faq-question" onclick="toggleFaq(this)">
-      ¿Necesito registrarme para la primera búsqueda?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-answer">
-      No. La primera búsqueda es completamente gratis y sin registro. Solo ingresas el RUT o nombre y ves un resumen inmediato. Para acceder al reporte completo necesitas comprar una consulta o un pack.
-    </div>
-  </div>
-
-  <div class="faq-item reveal">
-    <button class="faq-question" onclick="toggleFaq(this)">
-      ¿Qué tan actualizados están los datos?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-answer">
-      Consultamos las fuentes en tiempo real al momento de la búsqueda. Algunas fuentes como el PJUD y el SII se actualizan de manera continua. Los resultados son tan frescos como los que obtendrías buscando tú mismo en cada sitio oficial.
-    </div>
-  </div>
-
-  <div class="faq-item reveal">
-    <button class="faq-question" onclick="toggleFaq(this)">
-      ¿Emiten factura?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-answer">
-      Sí. El plan Empresas incluye factura electrónica. Para los planes Consulta y Pack 10, emitimos boleta electrónica. Si necesitas factura para uso ocasional, escríbenos a hola@delincuente.cl.
-    </div>
-  </div>
-
-  <div class="faq-item reveal">
-    <button class="faq-question" onclick="toggleFaq(this)">
-      ¿Puedo buscar personas naturales además de empresas?
-      <span class="faq-icon">+</span>
-    </button>
-    <div class="faq-answer">
-      Sí. Puedes buscar por RUT de persona natural o empresa. Para personas naturales mostramos estado SII, juicios civiles en PJUD, y listas UAF. El mismo precio aplica para ambos tipos de consulta.
-    </div>
-  </div>
-</div>
-
-<!-- ════════ CTA FINAL ════════ -->
-<div class="cta-section">
-  <span class="section-label">Empieza ahora</span>
-  <h2 class="cta-title">¿A quién<br>vas a verificar?</h2>
-  <a href="#hero-search" class="cta-btn">Hacer primera búsqueda gratis</a>
-</div>
-
-<!-- ════════ FOOTER ════════ -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <span class="footer-logo">delincuente<span>.cl</span></span>
-      <p class="footer-tagline">Verificación comercial basada en fuentes públicas del Estado chileno.</p>
-    </div>
-    <div class="footer-nav-group">
-      <h4>Producto</h4>
-      <ul>
-        <li><a href="#casos">Casos de uso</a></li>
-        <li><a href="#planes">Planes y precios</a></li>
-        <li><a href="#faq">Preguntas frecuentes</a></li>
-        <li><a href="#">API para empresas</a></li>
-      </ul>
-    </div>
-    <div class="footer-nav-group">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Términos de servicio</a></li>
-        <li><a href="#">Política de privacidad</a></li>
-        <li><a href="#">Política de datos</a></li>
-      </ul>
-    </div>
-    <div class="footer-nav-group">
-      <h4>Contacto</h4>
-      <ul>
-        <li><a href="mailto:hola@delincuente.cl">hola@delincuente.cl</a></li>
-        <li><a href="#">Ventas corporativas</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-legal">
-      delincuente.cl opera exclusivamente con datos de fuentes públicas del Estado de Chile. No somos DICOM ni operamos con información de la CMF como empresa regulada. El uso de esta plataforma se rige por la Ley 19.628 sobre protección de la vida privada. Toda consulta queda registrada y es auditable.
-    </p>
-    <span class="footer-copy">© 2025 delincuente.cl</span>
-  </div>
+  <div class="footer-logo">delincuente<span>.cl</span></div>
+  <ul class="footer-links">
+    <li><a href="#">Términos</a></li>
+    <li><a href="#">Privacidad</a></li>
+    <li><a href="#">API</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+  <div class="footer-legal">© 2025 · Datos públicos · Chile</div>
 </footer>
 
-<!-- ════════ JAVASCRIPT ════════ -->
 <script>
-/* ── NAV scroll shadow ── */
-const nav = document.getElementById('main-nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 10);
-}, { passive: true });
+  function setTab(el, type) {
+    document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    const input = document.getElementById('search-input');
+    input.placeholder = type === 'empresa'
+      ? 'Nombre o RUT — ej: 76.123.456-7'
+      : 'Nombre completo o RUT — ej: 12.345.678-9';
+  }
 
-/* ── Hamburguesa mobile ── */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
+  function formatRut(raw) {
+    // Elimina todo excepto dígitos y K/k
+    let clean = raw.replace(/[^0-9kK]/g, '').toUpperCase();
+    if (clean.length < 2) return clean;
+    // Separa dígito verificador
+    const dv = clean.slice(-1);
+    const body = clean.slice(0, -1);
+    // Agrega puntos cada 3 dígitos desde la derecha
+    let formatted = '';
+    let count = 0;
+    for (let i = body.length - 1; i >= 0; i--) {
+      formatted = body[i] + formatted;
+      count++;
+      if (count % 3 === 0 && i !== 0) formatted = '.' + formatted;
+    }
+    return formatted + '-' + dv;
+  }
 
-hamburger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open');
-  hamburger.classList.toggle('open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
+  function looksLikeRut(val) {
+    // Si tiene solo números/K/puntos/guión, lo tratamos como RUT
+    return /^[\d\.\-kK]+$/.test(val.trim());
+  }
 
-document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
-
-/* ── Tabs buscador ── */
-function setTab(el, type) {
-  document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
   const input = document.getElementById('search-input');
-  input.placeholder = type === 'empresa'
-    ? 'Nombre o RUT — ej: 76.123.456-7'
-    : 'Nombre completo o RUT — ej: 12.345.678-9';
-  input.focus();
-}
 
-/* ── Formateo automático de RUT ── */
-function formatRut(value) {
-  // Eliminar todo lo que no sea dígito o k/K
-  let clean = value.replace(/[^0-9kK]/g, '');
-  if (clean.length === 0) return '';
-
-  // Separar dígito verificador
-  const dv  = clean.slice(-1).toUpperCase();
-  const num = clean.slice(0, -1);
-
-  if (num.length === 0) return dv;
-
-  // Agregar puntos cada 3 dígitos
-  const formatted = num.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  return `${formatted}-${dv}`;
-}
-
-const searchInput = document.getElementById('search-input');
-
-searchInput.addEventListener('input', (e) => {
-  const raw = e.target.value;
-  // Solo formatear si parece RUT (solo dígitos, puntos, guión, k)
-  const isRutLike = /^[\d.\-kK]+$/.test(raw.replace(/\s/g, ''));
-  if (isRutLike && raw.length > 2) {
-    const pos = e.target.selectionStart;
-    e.target.value = formatRut(raw);
-    // Intentar mantener posición del cursor
-    try { e.target.setSelectionRange(pos, pos); } catch(_) {}
-  }
-});
-
-searchInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') handleSearch();
-});
-
-/* ── Búsqueda ── */
-function handleSearch() {
-  const val = searchInput.value.trim();
-  if (!val) {
-    searchInput.focus();
-    searchInput.style.borderColor = 'var(--rojo)';
-    setTimeout(() => { searchInput.style.borderColor = ''; }, 1500);
-    return;
-  }
-  // TODO: redirigir a /buscar?q=val cuando el backend esté listo
-  // Por ahora: placeholder visual
-  const btn = document.querySelector('.search-btn');
-  btn.textContent = 'Buscando...';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = 'BUSCAR';
-    btn.disabled = false;
-    // Aquí irá: window.location.href = `/buscar?q=${encodeURIComponent(val)}`;
-    alert(`✓ Próximamente: reporte para "${val}"`);
-  }, 1200);
-}
-
-/* ── FAQ accordion ── */
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const icon = btn.querySelector('.faq-icon');
-  const isOpen = item.classList.toggle('open');
-  icon.textContent = isOpen ? '−' : '+';
-}
-
-/* ── Scroll reveal ── */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
+  input.addEventListener('input', function() {
+    const val = this.value;
+    if (!looksLikeRut(val)) return; // Si tiene letras = nombre, no formatear
+    const pos = this.selectionStart;
+    const prevLen = val.length;
+    const formatted = formatRut(val);
+    this.value = formatted;
+    // Ajusta posición del cursor proporcionalmente
+    const diff = formatted.length - prevLen;
+    this.setSelectionRange(pos + diff, pos + diff);
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  function handleSearch() {
+    const val = input.value.trim();
+    if (!val) { input.focus(); return; }
+    window.location.href = 'resultados.html?q=' + encodeURIComponent(val);
+  }
 
-/* ── Smooth scroll para links internos ── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleSearch();
   });
-});
 </script>
 </body>
 </html>
